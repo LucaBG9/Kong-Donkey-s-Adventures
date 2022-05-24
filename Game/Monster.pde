@@ -1,12 +1,15 @@
 public class Monster{
   private int HP;
-  public float barrelsThrownPerSec;
+  float barrelsThrownPerSec;
   float x, y;
   public Monster(int level, int x, int y){
     this.x=x;
     this.y=y;
     HP=1;
     barrelsThrownPerSec=level*0.2;
+  }
+  float getBTPS(){
+    return barrelsThrownPerSec;
   }
   Barrel throwBarrel(){
     Barrel b = new Barrel(level, x, y, 20);
