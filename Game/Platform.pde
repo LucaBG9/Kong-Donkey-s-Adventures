@@ -1,5 +1,5 @@
 public class Platform{
-  float x, y, lowX, lowY, len;
+  float x, y, len;
   boolean isSurpassed=false;
   public Platform(float x, float y, float len){
     this.x=x;
@@ -10,10 +10,26 @@ public class Platform{
     isSurpassed=true;
   }
   void display(){
-    fill(255,0,0);
+    fill(242,69,63);
     rect(x, y, 1000, 15);
     rect(x, y+40, len, 15);
-    //rotate(PI/4);
-    rect(x, y, 50, 10);
+    fill(179,9,4);
+    quad(x, y+15, x+10, y+15, x+25, y+40, x+15, y+40);
+    quad(x+25, y+40, x+35, y+40, x+50, y+15, x+40, y+15);
+    
+    /*quad(x, y+15, x+10, y+15, x+25, y+40, x+15, y+40);
+    quad(x+25, y+40, x+35, y+40, x+50, y+15, x+40, y+15);
+    
+    quad(x, y+15, x+10, y+15, x+25, y+40, x+15, y+40);
+    quad(x+25, y+40, x+35, y+40, x+50, y+15, x+40, y+15);
+    
+    quad(x, y+15, x+10, y+15, x+25, y+40, x+15, y+40);
+    quad(x+25, y+40, x+35, y+40, x+50, y+15, x+40, y+15);
+    
+    quad(x, y+15, x+10, y+15, x+25, y+40, x+15, y+40);
+    quad(x+25, y+40, x+35, y+40, x+50, y+15, x+40, y+15);
+    
+    quad(x, y+15, x+10, y+15, x+25, y+40, x+15, y+40);
+    quad(x+25, y+40, x+35, y+40, x+50, y+15, x+40, y+15);*/
   }
 }
