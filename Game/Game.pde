@@ -2,13 +2,14 @@ public static final float GRAVITY = 0.5;
 public int level=3;
 ArrayList<Barrel>barrelList;
 ArrayList<Platform>platformList;
+  Character Mario = new Character(100, 830-50, 10, true);
 Monster kong = new Monster(level, 100, 100);
 float time=millis();
 Controller input;
 void setup(){
   size(1600, 900);
   input = new Controller();
-  barrelList = new ArrayList<Barrel>(); 
+  barrelList = new ArrayList<Barrel>();
   platformList=new ArrayList<Platform>();
   Platform one = new Platform(10, height-70, 1000);
   platformList.add(one);
@@ -18,7 +19,8 @@ void setup(){
 void draw(){
   background(255);
   kong.display();
-  if(millis()>time+(kong.getBTPS()*1000)){
+  Mario.display();
+  if(millis()>time+kong.getBTPS()*1000){
     barrelList.add(kong.throwBarrel());
     time=millis();
   }
