@@ -2,6 +2,7 @@ public static final float GRAVITY = 0.5;
 public int level=1;
 ArrayList<Barrel>barrelList;
 ArrayList<Platform>platformList;
+  Character Mario = new Character(100, 830-50, 10, true);
 Monster kong = new Monster(level, 100, 100);
 int time=millis();
 void setup(){
@@ -14,6 +15,7 @@ void setup(){
 void draw(){
   background(255);
   kong.display();
+  Mario.display();
   if(millis()>time+kong.getBTPS()*1000){
     barrelList.add(kong.throwBarrel());
     time=millis();

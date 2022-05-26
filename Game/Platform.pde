@@ -1,4 +1,4 @@
-public class Platform{
+  public class Platform{
   float x, y, len;
   boolean isSurpassed=false;
   public Platform(float x, float y, float len){
