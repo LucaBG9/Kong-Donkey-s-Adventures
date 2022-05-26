@@ -4,8 +4,10 @@ ArrayList<Barrel>barrelList;
 ArrayList<Platform>platformList;
 Monster kong = new Monster(level, 100, 100);
 float time=millis();
+Controller input;
 void setup(){
   size(1600, 900);
+  input = new Controller();
   barrelList = new ArrayList<Barrel>(); 
   platformList=new ArrayList<Platform>();
   Platform one = new Platform(10, height-70, 1000);
@@ -30,6 +32,10 @@ void draw(){
   fill(0);
 }
 void keyPressed(){
+  input.press('w');
+}
+void keyReleased(){
+  input.release('w');
 }
 void mouseClicked(){
 }
