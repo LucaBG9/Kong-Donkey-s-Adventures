@@ -1,5 +1,5 @@
 public class Barrel {
-  private int xSpeed;
+  private float xSpeed;
   //private int ySpeed;
   private float radius;
   private float x, y;

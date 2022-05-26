@@ -6,7 +6,7 @@ public class Monster{
     this.x=x;
     this.y=y;
     HP=1;
-    barrelsThrownPerSec=level*0.2;
+    barrelsThrownPerSec=level*2.5;
   }
   float getBTPS(){
     return barrelsThrownPerSec;
