@@ -1,5 +1,5 @@
 public static final float GRAVITY = 0.5;
-public int level=3;
+public int level=1;
 ArrayList<Barrel>barrelList;
 ArrayList<Platform>platformList;
 Character Mario = new Character(15, height-70, 10);
@@ -13,11 +13,21 @@ void setup(){
   platformList=new ArrayList<Platform>();
   Platform one = new Platform(10, height-70, 1000);
   platformList.add(one);
-  Platform two = new Platform(30, height-200, 1000);
+  Platform two = new Platform(width-1020, height-190, 1000);
+  Platform three = new Platform(300, height-310, 200);
+  Platform four = new Platform(10, height-430, 200);
   platformList.add(two);
+  platformList.add(three);
+  platformList.add(four);
+  Platform five = new Platform(230, height-550, 1000);
+  platformList.add(five);
+  Platform six = new Platform(1000, height-670, 550);
+  platformList.add(six);
+  Platform seven = new Platform(80, 125, 1000);
+  platformList.add(seven);
 }
 void draw(){
-  background(255);
+  background(0);
   kong.display();
   Mario.display();
   /*if(input.isPressed(Controller.P1_LEFT)){
@@ -33,6 +43,16 @@ void draw(){
     time=millis();
   }
   for(Barrel b : barrelList){
+    boolean isOnPlat=false;
+    for(Platform p:platformList){
+      if(b.y-b.radius==p.x){
+        b.negateY();
+        isOnPlat=true;
+      }
+    }
+    if(isOnPlat==false){
+      b.giveY();
+    }
     b.move();
     b.display();
   }

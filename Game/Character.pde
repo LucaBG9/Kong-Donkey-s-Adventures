@@ -33,5 +33,6 @@ public class Character {
     if(x+radius >= width || x-radius <= 0) {
       xSpeed = 0;
     }
+    //y+=ySpeed;
   }
 }

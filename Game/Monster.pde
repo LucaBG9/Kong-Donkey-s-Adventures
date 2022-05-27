@@ -12,7 +12,7 @@ public class Monster{
     return barrelsThrownPerSec;
   }
   Barrel throwBarrel(){
-    Barrel b = new Barrel(level, x, y, 20);
+    Barrel b = new Barrel(level, x, y+5, 20);
     return b;
   }
   void display(){
