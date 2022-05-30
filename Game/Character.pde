@@ -1,10 +1,10 @@
-public class Character {
+public class Character{
   int HP = 1;
   boolean hasSword=false;
   int xSpeed;
   int ySpeed = 5;
   private float x, y;
-  private float radius;
+   float radius;
   public Character(float x, float y, float radius) {
     this.x=x;
     this.y=y;

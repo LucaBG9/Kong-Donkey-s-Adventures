@@ -2,7 +2,7 @@ public static final float GRAVITY = 0.5;
 public int level=1;
 ArrayList<Barrel>barrelList;
 ArrayList<Platform>platformList;
-Character Mario = new Character(15, height-70, 10);
+Character Mario;
 Monster kong = new Monster(level, 100, 100);
 float time=millis();
 Controller input;
@@ -25,6 +25,13 @@ void setup(){
   platformList.add(six);
   Platform seven = new Platform(80, 125, 1000);
   platformList.add(seven);
+  float min = 0;
+  for (int i = 0; i < platformList.size(); i ++){
+    if (platformList.get(i).y > min){
+      Mario = new Character(width / 2, platformList.get(i).y -40, 10);
+      min = platformList.get(i).y;
+    }
+  }
 }
 void draw(){
   background(0);
