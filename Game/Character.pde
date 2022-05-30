@@ -4,7 +4,7 @@ public class Character {
   int xSpeed;
   int ySpeed = 5;
   private float x, y;
-  private float radius;
+   float radius;
   public Character(float x, float y, float radius) {
     this.x=x;
     this.y=y;

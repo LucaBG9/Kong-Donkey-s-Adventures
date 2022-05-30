@@ -2,7 +2,7 @@ public static final float GRAVITY = 0.5;
 public int level=1;
 ArrayList<Barrel>barrelList;
 ArrayList<Platform>platformList;
-Character Mario = new Character(15, height-70, 10);
+Character Mario;
 Monster kong = new Monster(level, 100, 100);
 float time=millis();
 Controller input;
@@ -25,19 +25,28 @@ void setup(){
   platformList.add(six);
   Platform seven = new Platform(80, 125, 1000);
   platformList.add(seven);
+  float min = 0;
+  for (int i = 0; i < platformList.size(); i ++){
+    if (platformList.get(i).y > min){
+      Mario = new Character(width / 2, platformList.get(i).y -40, 10);
+      min = platformList.get(i).y;
+    }
+  }
 }
 void draw(){
   background(0);
   kong.display();
   Mario.display();
-  /*if(input.isPressed(Controller.P1_LEFT)){
+  if(input.isPressed(Controller.P1_LEFT)){
     Mario.changeSpeed(-5);
   } else if (input.isPressed(Controller.P1_RIGHT)) {
     Mario.changeSpeed(5);
    } else {
      Mario.changeSpeed(0);
    }
-    Mario.move();*/
+    Mario.move();
+    
+    
   if(millis()>time+kong.getBTPS()*1000){
     barrelList.add(kong.throwBarrel());
     time=millis();
@@ -62,12 +71,10 @@ void draw(){
   fill(0);
 }
 void keyPressed(){
-  input.press('A');
-  input.press('D');
+  input.press(keyCode);
 }
 void keyReleased(){
-  input.release('A');
-  input.release('D');
+  input.release(keyCode);
 }
 void mouseClicked(){
 }
