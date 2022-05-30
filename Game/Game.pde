@@ -28,7 +28,7 @@ void setup(){
   float min = 0;
   for (int i = 0; i < platformList.size(); i ++){
     if (platformList.get(i).y > min){
-      Mario = new Character(width / 2, platformList.get(i).y -40, 10);
+      Mario = new Character(width / 2, platformList.get(i).y -10, 10);
       min = platformList.get(i).y;
     }
   }
@@ -72,9 +72,25 @@ void draw(){
 }
 void keyPressed(){
   input.press(keyCode);
+  if (key == ' '){
+    Mario.jump();
+  }
 }
 void keyReleased(){
   input.release(keyCode);
 }
 void mouseClicked(){
 }
+boolean intersect (Character a, Platform b){
+  float distanceX = (a.x + a.radius)- (b.x + b.len/ 2);
+  float distanceY = (a.y + a.radius)- (b.y + 5/ 2);
+  float HalfW = a.radius + b.len;
+  float HalfH = a.radius + 5;
+  if (abs(distanceX) < HalfW){
+    if (abs(distanceY) < HalfH){
+      return true;
+    }
+  }
+  return false;
+}
+ 
