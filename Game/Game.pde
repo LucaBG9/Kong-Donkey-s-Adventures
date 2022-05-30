@@ -37,14 +37,16 @@ void draw(){
   background(0);
   kong.display();
   Mario.display();
-  /*if(input.isPressed(Controller.P1_LEFT)){
+  if(input.isPressed(Controller.P1_LEFT)){
     Mario.changeSpeed(-5);
   } else if (input.isPressed(Controller.P1_RIGHT)) {
     Mario.changeSpeed(5);
    } else {
      Mario.changeSpeed(0);
    }
-    Mario.move();*/
+    Mario.move();
+    
+    
   if(millis()>time+kong.getBTPS()*1000){
     barrelList.add(kong.throwBarrel());
     time=millis();
@@ -69,12 +71,10 @@ void draw(){
   fill(0);
 }
 void keyPressed(){
-  input.press('A');
-  input.press('D');
+  input.press(keyCode);
 }
 void keyReleased(){
-  input.release('A');
-  input.release('D');
+  input.release(keyCode);
 }
 void mouseClicked(){
 }

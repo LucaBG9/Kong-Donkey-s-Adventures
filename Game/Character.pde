@@ -1,4 +1,4 @@
-public class Character{
+public class Character {
   int HP = 1;
   boolean hasSword=false;
   int xSpeed;
