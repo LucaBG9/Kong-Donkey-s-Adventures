@@ -61,6 +61,7 @@ void draw(){
     }
     if(isOnPlat==false){
       b.giveY();
+      b.move();
     }
     b.move();
     b.display();
@@ -69,11 +70,15 @@ void draw(){
     p.display();
   }
   fill(0);
+  if (intersect(Mario, platformList.get(0))){
+   Mario.onPlat();
+  }
 }
 void keyPressed(){
   input.press(keyCode);
   if (key == ' '){
     Mario.jump();
+    Mario.intersect = false;
   }
 }
 void keyReleased(){
@@ -82,15 +87,14 @@ void keyReleased(){
 void mouseClicked(){
 }
 boolean intersect (Character a, Platform b){
-  float distanceX = (a.x + a.radius)- (b.x + b.len/ 2);
-  float distanceY = (a.y + a.radius)- (b.y + 5/ 2);
-  float HalfW = a.radius + b.len;
-  float HalfH = a.radius + 5;
-  if (abs(distanceX) < HalfW){
-    if (abs(distanceY) < HalfH){
-      return true;
-    }
+float distanceX = (a.x + a.radius)- (b.x + b.len/ 2);
+float distanceY = (a.y + a.radius)- (b.y + 15/ 2);
+float HalfW = a.radius + b.len;
+float HalfH = a.radius + 15;
+if (abs(distanceX) < HalfW){
+  if (abs(distanceY) < HalfH){
+    return true;
   }
+ }
   return false;
 }
- 
