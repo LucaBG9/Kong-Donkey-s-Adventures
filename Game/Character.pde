@@ -1,14 +1,22 @@
 public class Character {
   int HP = 1;
+  boolean intersect = false;
+  float gravity = 0.75;
   boolean hasSword=false;
   int xSpeed;
-  int ySpeed = 5;
+  float ySpeed =0;
   private float x, y;
    float radius;
   public Character(float x, float y, float radius) {
     this.x=x;
     this.y=y;
     this.radius=radius;
+    gravity = 0.75;
+    intersect = false;
+  }
+  void onPlat() {
+    ySpeed = 0;
+    intersect = true;
   }
   void gotSword(){
     hasSword=!hasSword;
@@ -25,14 +33,19 @@ public class Character {
       fill(255,0,0);
       rect(x+radius, y+radius, radius, radius);
     }
-    
   }
 
   void move() {
+   if (!(intersect)){
+      ySpeed += gravity;
+    }
+    y+=ySpeed;
     x+=xSpeed;
     if(x+radius >= width || x-radius <= 0) {
       xSpeed = 0;
     }
-    //y+=ySpeed;
+  }
+  void jump(){
+    y -= 70;
   }
 }
