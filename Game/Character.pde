@@ -4,7 +4,7 @@ public class Character {
   float gravity = 0.75;
   boolean hasSword=false;
   int xSpeed;
-  int ySpeed =0;
+  float ySpeed =0;
   private float x, y;
    float radius;
   public Character(float x, float y, float radius) {
@@ -36,10 +36,9 @@ public class Character {
   }
 
   void move() {
-   //if (!(intersect)){
-   //   ySpeed += gravity;
-   // }
-   ySpeed += gravity;
+   if (!(intersect)){
+      ySpeed += gravity;
+    }
     y+=ySpeed;
     x+=xSpeed;
     if(x+radius >= width || x-radius <= 0) {
