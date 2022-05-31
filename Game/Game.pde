@@ -1,5 +1,6 @@
 public static final float GRAVITY = 0.5;
 public int level=1;
+int t = millis();
 ArrayList<Barrel>barrelList;
 ArrayList<Platform>platformList;
 Character Mario;
@@ -53,6 +54,13 @@ void draw(){
   }
   for(Barrel b : barrelList){
     boolean isOnPlat=false;
+    if(abs(b.x - Mario.x) < Mario.radius && abs(b.y - Mario.y) < Mario.radius + b.radius){
+      textSize(300);
+if( millis() < t + 1000000){
+    text("GAME OVER", 100, 300);
+  }
+exit();
+    }
     for(Platform p:platformList){
       if(b.y-b.radius==p.x){
         b.negateY();
