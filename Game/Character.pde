@@ -46,6 +46,6 @@ public class Character {
     }
   }
   void jump(){
-    y -= 70;
+    y -= 150;
   }
 }

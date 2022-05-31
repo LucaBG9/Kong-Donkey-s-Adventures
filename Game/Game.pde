@@ -66,12 +66,17 @@ void draw(){
     b.move();
     b.display();
   }
-  for(Platform p : platformList){
-    p.display();
-  }
+  //for(Platform p : platformList){
+  //  p.display();
+  //}
   fill(0);
-  if (intersect(Mario, platformList.get(0))){
+  for (int i = 0; i < platformList.size(); i ++){
+    platformList.get(i).display();
+  if (intersect(Mario, platformList.get(i))){
    Mario.onPlat();
+  } else{
+    Mario.intersect = false;
+    }
   }
 }
 void keyPressed(){
