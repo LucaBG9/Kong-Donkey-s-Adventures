@@ -4,7 +4,7 @@ int t = millis();
 ArrayList<Barrel>barrelList;
 ArrayList<Platform>platformList;
 Character Mario;
-Monster kong = new Monster(level, 100, 100);
+Monster kong = new Monster(level, 100, 100, 50);
 float time=millis();
 Controller input;
 void setup(){
@@ -86,7 +86,14 @@ exit();
     Mario.intersect = false;
     }
   }
-}
+  if (abs(kong.x - Mario.x) < Mario.radius && abs(kong.y - Mario.y) < Mario.radius + kong.radius){
+  textSize(300);
+if( millis() < t + 1000000){
+    text("YOU WIN", 100, 300);
+  }
+exit();
+    }
+  }
 void keyPressed(){
   input.press(keyCode);
   if (key == ' '){
