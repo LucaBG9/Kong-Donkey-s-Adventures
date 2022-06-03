@@ -61,18 +61,15 @@ if( millis() < t + 1000000){
   }
 exit();
     }
-    for(Platform p:platformList){
-      if(b.y-b.radius==p.x){
-        b.negateY();
-        isOnPlat=true;
-      }
-    }
-    if(isOnPlat==false){
-      b.giveY();
-      b.move();
-    }
     b.move();
+    for(Platform p:platformList){
     b.display();
+  if (intersect(b, p)){
+   b.onPlat(p.y);
+  } else{
+   b.intersect = false; 
+    }
+  } 
   }
   //for(Platform p : platformList){
   //  p.display();
