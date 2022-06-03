@@ -78,14 +78,14 @@ exit();
   //  p.display();
   //}
   fill(0);
-  for (int i = 0; i < platformList.size(); i ++){
+  for (int i = 0; i < platformList.size(); i ++){ //<>//
     platformList.get(i).display();
   if (intersect(Mario, platformList.get(i))){
-   Mario.onPlat();
+   Mario.onPlat(platformList.get(i).y);
   } else{
-    Mario.intersect = false;
+    Mario.intersect = false; 
     }
-  }
+  }  //<>//
   if (abs(kong.x - Mario.x) < Mario.radius && abs(kong.y - Mario.y) < Mario.radius + kong.radius){
   textSize(300);
 if( millis() < t + 1000000){
@@ -97,6 +97,7 @@ exit();
 void keyPressed(){
   input.press(keyCode);
   if (key == ' '){
+    Mario.ySpeed = -3;
     Mario.jump();
     Mario.intersect = false;
   }
@@ -107,8 +108,8 @@ void keyReleased(){
 void mouseClicked(){
 }
 boolean intersect (Character a, Platform b){
-float distanceX = (a.x + a.radius)- (b.x + b.len/ 2);
-float distanceY = (a.y + a.radius)- (b.y + 15/ 2);
+float distanceX = (a.x + a.radius)- (b.x + b.len/2);
+float distanceY = (a.y + a.radius)- (b.y + 15);
 float HalfW = a.radius + b.len;
 float HalfH = a.radius + 15;
 if (abs(distanceX) < HalfW){
