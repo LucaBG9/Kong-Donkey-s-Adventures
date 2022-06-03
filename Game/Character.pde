@@ -17,7 +17,7 @@ float x, y;
   void onPlat(float platY) {
     ySpeed = 0;
     intersect = true;
-    y = platY - 2* radius;
+    y = platY - radius;
   }
   void gotSword(){
     hasSword=!hasSword;

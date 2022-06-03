@@ -48,7 +48,7 @@ void draw(){
     Mario.move();
     
     
-  if(millis()>time+kong.getBTPS()*1000){
+  if(millis()>time+kong.getBTPS()*500){
     barrelList.add(kong.throwBarrel());
     time=millis();
   }
@@ -61,18 +61,15 @@ if( millis() < t + 1000000){
   }
 exit();
     }
-    for(Platform p:platformList){
-      if(b.y-b.radius==p.x){
-        b.negateY();
-        isOnPlat=true;
-      }
-    }
-    if(isOnPlat==false){
-      b.giveY();
-      b.move();
-    }
     b.move();
+    for(Platform p:platformList){
     b.display();
+  if (intersect(b, p)){
+   b.onPlat(p.y);
+  } else{
+   b.intersect = false; 
+    }
+  } 
   }
   //for(Platform p : platformList){
   //  p.display();
@@ -108,6 +105,18 @@ void keyReleased(){
 void mouseClicked(){
 }
 boolean intersect (Character a, Platform b){
+float distanceX = (a.x + a.radius)- (b.x + b.len/2);
+float distanceY = (a.y + a.radius)- (b.y + 7.5);
+float HalfW = a.radius + b.len/2;
+float HalfH = a.radius + 7.5;
+if (abs(distanceX) < HalfW){
+  if (abs(distanceY) < HalfH){
+    return true;
+  }
+ }
+  return false;
+}
+boolean intersect (Barrel a, Platform b){
 float distanceX = (a.x + a.radius)- (b.x + b.len/2);
 float distanceY = (a.y + a.radius)- (b.y + 7.5);
 float HalfW = a.radius + b.len/2;
