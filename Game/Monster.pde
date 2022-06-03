@@ -1,10 +1,11 @@
 public class Monster{
   private int HP;
   float barrelsThrownPerSec;
-  float x, y;
-  public Monster(int level, int x, int y){
+  float x, y, radius;
+  public Monster(int level, float x, float y, float radius){
     this.x=x;
     this.y=y;
+    this.radius = radius;
     HP=1;
     barrelsThrownPerSec=level*2.5;
   }
@@ -18,7 +19,7 @@ public class Monster{
   void display(){
     if(HP>0){
       fill(0, 255, 0);
-      circle(x, y, 50);
+      circle(x, y, radius);
     } 
   }
 }
