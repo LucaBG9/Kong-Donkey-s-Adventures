@@ -6,7 +6,7 @@ public class Barrel {
   float x, y;
   float gravity = 0.75;
   public Barrel(int level, float x, float y, float radius) {
-    xSpeed=level * 8;
+    xSpeed=level +5;
     ySpeed=level*2;
     this.x=x;
     this.y=y;
