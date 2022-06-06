@@ -94,9 +94,11 @@ exit();
 void keyPressed(){
   input.press(keyCode);
   if (key == ' '){
-    Mario.ySpeed = -3;
-    Mario.jump();
-    Mario.intersect = false;
+    if(Mario.ySpeed==0){
+      Mario.ySpeed = -3;
+      Mario.jump();
+      Mario.intersect = false;
+    }
   }
 }
 void keyReleased(){
