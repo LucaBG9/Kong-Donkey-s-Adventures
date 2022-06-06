@@ -48,7 +48,7 @@ void draw(){
     Mario.move();
     
     
-  if(millis()>time+kong.getBTPS()*500){
+  if(millis()>time+kong.getBTPS()*1000){
     barrelList.add(kong.throwBarrel());
     time=millis();
   }
