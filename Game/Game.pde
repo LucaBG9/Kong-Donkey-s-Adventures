@@ -35,62 +35,64 @@ void setup() {
   }
 }
 void draw() {
-  background(0);
-  kong.display();
-  Mario.display();
-  if (input.isPressed(Controller.P1_LEFT)) {
-    Mario.changeSpeed(-7);
-  } else if (input.isPressed(Controller.P1_RIGHT)) {
-    Mario.changeSpeed(7);
-  } else {
-    Mario.changeSpeed(0);
-  }
-  Mario.move();
-
-
-  if (millis()>time+(8000/kong.getBTPS())) {
-    barrelList.add(kong.throwBarrel());
-    time=millis();
-  }
-  for (Barrel b : barrelList) {
-    boolean isOnPlat=false;
-    if (abs(b.x - Mario.x) < Mario.radius && abs(b.y - Mario.y) < Mario.radius + b.radius) {
-      textSize(300);
-      if ( millis() < t + 1000000) {
-        text("GAME OVER", 100, 300);
-        
-      }
-      //pause();  
-      exit();
-    }
-    b.move();
-    for (Platform p : platformList) {
-      b.display();
-      if (intersect(b, p)) {
-        b.onPlat(p.y);
-      } else {
-        b.intersect = false;
-      }
-    }
-  }
-  //for(Platform p : platformList){
-  //  p.display();
-  //}
-  fill(0);
-  for (int i = 0; i < platformList.size(); i ++) {
-    platformList.get(i).display();
-    if (intersect(Mario, platformList.get(i))) {
-      Mario.onPlat(platformList.get(i).y);
-    } else {
-      Mario.intersect = false;
-    }
-  } 
-  if (abs(kong.x - Mario.x) < Mario.radius && abs(kong.y - Mario.y) < Mario.radius + kong.radius) {
+  fill(255);
+  text("Level: "+level, 10 ,10);
+  if (kong.HP==0) {
+    background(0);
     textSize(300);
-    if ( millis() < t + 1000000) {
-      text("YOU WIN", 100, 300);
+    text("YOU WIN", 100, 300);
+  } else if (Mario.HP==0) {
+    background(0);
+    textSize(200);
+    text("GAME OVER", 100, 300);
+  } else {
+    background(0);
+    kong.display();
+    Mario.display();
+    if (input.isPressed(Controller.P1_LEFT)) {
+      Mario.changeSpeed(-7);
+    } else if (input.isPressed(Controller.P1_RIGHT)) {
+      Mario.changeSpeed(7);
+    } else {
+      Mario.changeSpeed(0);
     }
-    exit();
+    Mario.move();
+
+
+    if (millis()>time+(8000/kong.getBTPS())) {
+      barrelList.add(kong.throwBarrel());
+      time=millis();
+    }
+    for (Barrel b : barrelList) {
+      boolean isOnPlat=false;
+      if (abs(b.x - Mario.x) < Mario.radius && abs(b.y - Mario.y) < Mario.radius + b.radius) {
+        Mario.HP=0;
+      }
+      b.move();
+      for (Platform p : platformList) {
+        b.display();
+        if (intersect(b, p)) {
+          b.onPlat(p.y);
+        } else {
+          b.intersect = false;
+        }
+      }
+    }
+    //for(Platform p : platformList){
+    //  p.display();
+    //}
+    fill(0);
+    for (int i = 0; i < platformList.size(); i ++) {
+      platformList.get(i).display();
+      if (intersect(Mario, platformList.get(i))) {
+        Mario.onPlat(platformList.get(i).y);
+      } else {
+        Mario.intersect = false;
+      }
+    } 
+    if (abs(kong.x - Mario.x) < Mario.radius && abs(kong.y - Mario.y) < Mario.radius + kong.radius) {
+      kong.HP=0;
+    }
   }
 }
 void keyPressed() {
