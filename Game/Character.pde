@@ -41,10 +41,11 @@ float x, y;
       ySpeed += gravity;
     } 
     y+=ySpeed;
+    /*if (x+radius >= width || x-radius <= 0) {
+      xSpeed = xSpeed*-1;
+    }*/
     x+=xSpeed;
-    if(x+radius >= width || x-radius <= 0) {
-      xSpeed = 0;
-    }
+    
   }
   void jump(){
     y -= 150;

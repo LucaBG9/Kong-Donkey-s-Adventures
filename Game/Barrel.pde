@@ -7,7 +7,7 @@ public class Barrel {
   float gravity = 0.75;
   public Barrel(int level, float x, float y, float radius) {
     xSpeed=level +5;
-    ySpeed=level*2;
+    ySpeed=level+5;
     this.x=x;
     this.y=y;
     this.radius=radius;
@@ -26,7 +26,7 @@ public class Barrel {
   //  ySpeed=0;
   //}
   void giveY(){
-    ySpeed=level*2;
+    ySpeed=level+5;
   }
   void move() {
     if (x+radius >= width || x-radius <= 0) {
