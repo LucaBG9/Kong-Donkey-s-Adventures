@@ -26,10 +26,15 @@ float x, y;
     xSpeed=x;
   }
   void display() {
+    imageMode(CENTER);
     if(HP>0){
     color a = color(255, 204, 0);
     fill(a);
-    ellipse(x, y, radius*2, radius*2);
+    if(xSpeed < 0) {    
+    image(MarioLeft,x,y, radius * 2, radius *2);
+    } else{
+       image(MarioRight,x,y, radius * 2, radius *2);
+    }
     } else {
       fill(255,0,0);
       rect(x+radius, y+radius, radius, radius);

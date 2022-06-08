@@ -1,4 +1,6 @@
 public static final float GRAVITY = 0.5; //<>// //<>//
+PImage MarioLeft;
+PImage MarioRight;
 public int level=1;
 int t = millis();
 ArrayList<Barrel>barrelList;
@@ -8,6 +10,8 @@ Monster kong = new Monster(level, 100, 100, 50);
 float time=millis();
 Controller input;
 void setup() {
+  MarioLeft = loadImage ("MarioLeft.jpg");
+  MarioRight = loadImage ("MarioRight.jpg");
   size(1600, 900);
   input = new Controller();
   barrelList = new ArrayList<Barrel>();
@@ -29,7 +33,7 @@ void setup() {
   float min = 0;
   for (int i = 0; i < platformList.size(); i ++) {
     if (platformList.get(i).y > min) {
-      Mario = new Character(width / 2, platformList.get(i).y -10, 10);
+      Mario = new Character(width / 2, platformList.get(i).y -10, 30);
       min = platformList.get(i).y;
     }
   }
