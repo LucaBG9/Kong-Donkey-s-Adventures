@@ -1,5 +1,5 @@
 public class Monster{
-  private int HP;
+  int HP;
   float barrelsThrownPerSec;
   float x, y, radius;
   public Monster(int level, float x, float y, float radius){
