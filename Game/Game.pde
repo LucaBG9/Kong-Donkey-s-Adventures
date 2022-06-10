@@ -1,4 +1,8 @@
 public static final float GRAVITY = 0.5; //<>// //<>//
+PImage MarioLeft;
+PImage MarioRight;
+PImage MarioLeftJump;
+PImage MarioRightJump;
 public int level=1;
 int t = millis();
 ArrayList<Barrel>barrelList;
@@ -9,6 +13,10 @@ float time=millis();
 Controller input;
 ArrayList<Hammer>hammerList;
 void setup() {
+  MarioLeft = loadImage ("MarioLeft.jpg");
+  MarioRight = loadImage ("MarioRight.jpg");
+  MarioLeftJump = loadImage ("MarioLeftJump.png");
+  MarioRightJump = loadImage ("MarioRightJump.png");
   size(1600, 900);
   input = new Controller();
   barrelList = new ArrayList<Barrel>();
@@ -33,7 +41,7 @@ void setup() {
   float min = 0;
   for (int i = 0; i < platformList.size(); i ++) {
     if (platformList.get(i).y > min) {
-      Mario = new Character(width / 2, platformList.get(i).y -10, 10);
+      Mario = new Character(width / 2, platformList.get(i).y -10, 30);
       min = platformList.get(i).y;
     }
   }
@@ -88,12 +96,12 @@ void draw() {
     fill(0);
     for (int i = 0; i < platformList.size(); i ++) {
       platformList.get(i).display();
-      if (intersect(Mario, platformList.get(i))) {
+      if (intersect(Mario, platformList.get(i))&& (Mario.ySpeed >= 0)) {
         Mario.onPlat(platformList.get(i).y);
       } else {
         Mario.intersect = false;
       }
-    } 
+      } 
     if (abs(kong.x - Mario.x) < Mario.radius && abs(kong.y - Mario.y) < Mario.radius + kong.radius) {
       kong.HP=0;
     }
@@ -103,7 +111,6 @@ void keyPressed() {
   input.press(keyCode);
   if (key == ' ') {
     if (Mario.ySpeed==0) {
-      Mario.ySpeed = -3;
       Mario.jump();
       Mario.intersect = false;
     }
