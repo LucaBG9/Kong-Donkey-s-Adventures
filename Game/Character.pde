@@ -40,12 +40,11 @@ boolean jump = false;
       }
     
      else{
-            if(ySpeed != 0){
-        image(MarioRightJump,x,y, radius * 2, radius *2);
-      }else{
+            //if(ySpeed != 0){
+      //  image(MarioRightJump,x,y, radius * 2, radius *2);
+      //}else{
        image(MarioRight,x,y, radius * 2, radius *2);
     }
-     }
     } else {
       fill(255,0,0);
       rect(x+radius, y+radius, radius, radius);
