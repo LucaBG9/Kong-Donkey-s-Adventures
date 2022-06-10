@@ -32,11 +32,20 @@ boolean jump = false;
     if(HP>0){
     color a = color(255, 204, 0);
     fill(a);
-    if(xSpeed < 0) {    
-    image(MarioLeft,x,y, radius * 2, radius *2);
-    } else{
+    if(xSpeed < 0) {
+      //if(ySpeed != 0){
+      //  image(MarioLeftJump,x,y, radius * 2, radius *2);
+      //}else{
+        image(MarioLeft,x,y, radius * 2, radius *2);
+      }
+    
+     else{
+            if(ySpeed != 0){
+        image(MarioRightJump,x,y, radius * 2, radius *2);
+      }else{
        image(MarioRight,x,y, radius * 2, radius *2);
     }
+     }
     } else {
       fill(255,0,0);
       rect(x+radius, y+radius, radius, radius);

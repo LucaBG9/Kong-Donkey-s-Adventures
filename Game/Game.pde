@@ -1,6 +1,8 @@
 public static final float GRAVITY = 0.5; //<>// //<>//
 PImage MarioLeft;
 PImage MarioRight;
+PImage MarioLeftJump;
+PImage MarioRightJump;
 public int level=1;
 int t = millis();
 ArrayList<Barrel>barrelList;
@@ -12,6 +14,8 @@ Controller input;
 void setup() {
   MarioLeft = loadImage ("MarioLeft.jpg");
   MarioRight = loadImage ("MarioRight.jpg");
+  MarioLeftJump = loadImage ("MarioLeftJump.png");
+  MarioRightJump = loadImage ("MarioRightJump.png");
   size(1600, 900);
   input = new Controller();
   barrelList = new ArrayList<Barrel>();
@@ -90,7 +94,6 @@ void draw() {
       platformList.get(i).display();
       if (intersect(Mario, platformList.get(i))&& (Mario.ySpeed >= 0)) {
         Mario.onPlat(platformList.get(i).y);
-        Mario.gravity = 0;
       } else {
         Mario.intersect = false;
       }
