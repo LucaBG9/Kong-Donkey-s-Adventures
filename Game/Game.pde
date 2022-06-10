@@ -88,12 +88,13 @@ void draw() {
     fill(0);
     for (int i = 0; i < platformList.size(); i ++) {
       platformList.get(i).display();
-      if (intersect(Mario, platformList.get(i))) {
+      if (intersect(Mario, platformList.get(i))&& (Mario.ySpeed >= 0)) {
         Mario.onPlat(platformList.get(i).y);
+        Mario.gravity = 0;
       } else {
         Mario.intersect = false;
       }
-    }
+      } 
     if (abs(kong.x - Mario.x) < Mario.radius && abs(kong.y - Mario.y) < Mario.radius + kong.radius) {
       kong.HP=0;
     }
@@ -103,7 +104,6 @@ void keyPressed() {
   input.press(keyCode);
   if (key == ' ') {
     if (Mario.ySpeed==0) {
-      Mario.ySpeed = -3;
       Mario.jump();
       Mario.intersect = false;
     }

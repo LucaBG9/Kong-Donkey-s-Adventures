@@ -1,4 +1,5 @@
 public class Character {
+  int k = millis();
   int HP = 1;
   boolean intersect = false;
   float gravity = 0.75;
@@ -6,6 +7,7 @@ public class Character {
   int xSpeed;
   float ySpeed =0;
 float x, y;
+boolean jump = false;
    float radius;
   public Character(float x, float y, float radius) {
     this.x=x;
@@ -42,9 +44,13 @@ float x, y;
   }
 
   void move() {
-   if (intersect==false){
+  // if (intersect==false){
       ySpeed += gravity;
-    } 
+    //} 
+     if (jump == true){
+    ySpeed += -15;
+    jump = false;
+     }
     y+=ySpeed;
     /*if (x+radius >= width || x-radius <= 0) {
       xSpeed = xSpeed*-1;
@@ -53,6 +59,7 @@ float x, y;
     
   }
   void jump(){
-    y -= 150;
+     jump = true;
+   //ySpeed -= 15;
   }
 }
