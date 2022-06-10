@@ -7,11 +7,13 @@ Character Mario;
 Monster kong = new Monster(level, 100, 100, 50);
 float time=millis();
 Controller input;
+ArrayList<Hammer>hammerList;
 void setup() {
   size(1600, 900);
   input = new Controller();
   barrelList = new ArrayList<Barrel>();
   platformList=new ArrayList<Platform>();
+  hammerList=new ArrayList<Hammer>();
   Platform one = new Platform(10, height-70, 1000);
   platformList.add(one);
   Platform two = new Platform(width-1020, height-190, 1000);
@@ -26,6 +28,8 @@ void setup() {
   platformList.add(six);
   Platform seven = new Platform(80, 125, 1000);
   platformList.add(seven);
+  Hammer h1 = new Hammer(width-900, height-210);
+  hammerList.add(h1);
   float min = 0;
   for (int i = 0; i < platformList.size(); i ++) {
     if (platformList.get(i).y > min) {
@@ -63,6 +67,9 @@ void draw() {
       barrelList.add(kong.throwBarrel());
       time=millis();
     }
+    for(Hammer h : hammerList){
+      h.display();
+    }
     for (Barrel b : barrelList) {
       boolean isOnPlat=false;
       if (abs(b.x - Mario.x) < Mario.radius && abs(b.y - Mario.y) < Mario.radius + b.radius) {
@@ -78,9 +85,6 @@ void draw() {
         }
       }
     }
-    //for(Platform p : platformList){
-    //  p.display();
-    //}
     fill(0);
     for (int i = 0; i < platformList.size(); i ++) {
       platformList.get(i).display();
@@ -103,6 +107,9 @@ void keyPressed() {
       Mario.jump();
       Mario.intersect = false;
     }
+  }
+  if(key=='r'){
+    setup();
   }
 }
 void keyReleased() {
