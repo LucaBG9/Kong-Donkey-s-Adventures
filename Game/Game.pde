@@ -1,8 +1,16 @@
-public static final float GRAVITY = 0.5; //<>// //<>//
+public static final float GRAVITY = 0.5; //<>// //<>// //<>//
+float hammerTime;
 PImage MarioLeft;
 PImage MarioRight;
 PImage MarioLeftJump;
 PImage MarioRightJump;
+PImage Hammer;
+PImage MarioLeftHammer;
+PImage DonkeyKong;
+PImage MarioRightHammer;
+PImage MarioLeftJumpHammer;
+PImage MarioRightJumpHammer;
+PImage Barrel;
 public int level=1;
 int t = millis();
 ArrayList<Barrel>barrelList;
@@ -13,10 +21,17 @@ float time=millis();
 Controller input;
 ArrayList<Hammer>hammerList;
 void setup() {
-  MarioLeft = loadImage ("MarioLeft.jpg");
-  MarioRight = loadImage ("MarioRight.jpg");
+  MarioLeft = loadImage ("MarioLeft.png");
+  MarioRight = loadImage ("MarioRight.png");
   MarioLeftJump = loadImage ("MarioLeftJump.png");
   MarioRightJump = loadImage ("MarioRightJump.png");
+  Hammer = loadImage("MarioHammer.png");
+  MarioLeftHammer = loadImage("MarioLeftHammer.png");
+   MarioRightHammer = loadImage("MarioRightHammer.png");
+   MarioLeftJumpHammer = loadImage("MarioLeftJumpHammer.png");
+   MarioRightJumpHammer = loadImage("MarioRightJumpHammer.png");
+   DonkeyKong = loadImage("DonkeyKong.png");
+   Barrel = loadImage("Barrel.png");
   size(1600, 900);
   input = new Controller();
   barrelList = new ArrayList<Barrel>();
@@ -53,12 +68,24 @@ void draw() {
     background(0);
     textSize(300);
     text("YOU WIN", 100, 300);
+    textSize(100);
+    text("press ' ' to move to the  \n next level", 100, 500);
   } else if (Mario.HP==0) {
     background(0);
     textSize(200);
     text("GAME OVER", 100, 300);
+    textSize(100);
+    text("press 'r' to try again", 100, 500);
   } else {
     background(0);
+    String s = " ";
+    if (Mario.hasHammer){
+      s = "Mario has Hammer";
+    }
+    else{
+      s= "Mario does not have Hammer";
+    }
+    text(s, 10, 20);
     kong.display();
     Mario.display();
     if (input.isPressed(Controller.P1_LEFT)) {
@@ -75,9 +102,16 @@ void draw() {
       barrelList.add(kong.throwBarrel());
       time=millis();
     }
-    for(Hammer h : hammerList){
-      h.display();
+    for (int i = 0; i < hammerList.size(); i++){
+      hammerList.get(i).display();
+      if(intersect(Mario, hammerList.get(i))){
+        Mario.hasHammer = true;
+        hammerTime = hammerList.get(i).y;
+        hammerList.remove(hammerList.get(i));
+        i--;
+      }
     }
+    
     for (Barrel b : barrelList) {
       boolean isOnPlat=false;
       if (abs(b.x - Mario.x) < Mario.radius && abs(b.y - Mario.y) < Mario.radius + b.radius) {
@@ -91,8 +125,8 @@ void draw() {
         } else {
           b.intersect = false;
         }
-      }
-    }
+      }   }
+    
     fill(0);
     for (int i = 0; i < platformList.size(); i ++) {
       platformList.get(i).display();
@@ -107,11 +141,15 @@ void draw() {
     }
   }
 }
+
 void keyPressed() {
   input.press(keyCode);
   if (key == ' ') {
     if (Mario.ySpeed==0) {
       Mario.jump();
+     if(Mario.y <  hammerTime - 150){
+      Mario.hasHammer = false;
+    }
       Mario.intersect = false;
     }
   }
@@ -123,6 +161,11 @@ void keyReleased() {
   input.release(keyCode);
 }
 void mouseClicked() {
+  for (int k = 0; k < barrelList.size(); k ++) {
+    if (intersect(Mario, barrelList.get(k)) && Mario.hasHammer){
+      barrelList.remove(k);
+    }
+  }
 }
 boolean intersect (Character a, Platform b) {
   float distanceX = (a.x + a.radius)- (b.x + b.len/2);
@@ -142,6 +185,30 @@ boolean intersect (Barrel a, Platform b) {
   float HalfW = a.radius + b.len/2;
   float HalfH = a.radius + 7.5;
   if (abs(distanceX) < HalfW) {
+    if (abs(distanceY) < HalfH) {
+      return true;
+    }
+  }
+  return false;
+}
+boolean intersect (Character a, Hammer b) {
+  float distanceX = (a.x + a.radius)- (b.x + b.radius/2);
+  float distanceY = (a.y + a.radius)- (b.y + 7.5);
+  float HalfW = a.radius +b.radius/2;
+  float HalfH = a.radius + 7.5;
+  if (abs(distanceX) < HalfW) {
+    if (abs(distanceY) < HalfH) {
+      return true;
+    }
+  }
+  return false;
+}
+boolean intersect (Character a, Barrel b) {
+  float distanceX = (a.x + a.radius)- (b.x + b.radius/2);
+  float distanceY = (a.y + a.radius)- (b.y + 7.5);
+  float HalfW = a.radius +b.radius;
+  float HalfH = a.radius + 7.5;
+  if (abs(distanceX) < HalfW+100) {
     if (abs(distanceY) < HalfH) {
       return true;
     }
