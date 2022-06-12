@@ -3,7 +3,7 @@ PImage MarioLeft;
 PImage MarioRight;
 PImage MarioLeftJump;
 PImage MarioRightJump;
-public int level=6;
+public int level=1;
 int t = millis();
 ArrayList<Barrel>barrelList;
 ArrayList<Platform>platformList;
