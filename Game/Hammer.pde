@@ -8,6 +8,8 @@ class Hammer{
   void display(){
     fill(22, 247, 240);
     stroke(2, 38, 158);
-    circle(x, y, radius);
+    //circle(x, y, radius);
+    imageMode(CENTER);
+    image(Hammer,x,y, radius * 2, radius *2);
   }
 }

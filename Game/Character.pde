@@ -35,16 +35,32 @@ boolean jump = false;
     fill(a);
     if(xSpeed < 0) {
       if(ySpeed != 0){
+        if(hasHammer){
+          image(MarioLeftJumpHammer,x,y, radius * 2, radius *2);
+        }else{
         image(MarioLeftJump,x,y, radius * 2.4, radius *2);
+        }
       }else{
+        if(hasHammer){
+          image(MarioLeftHammer,x,y, radius * 2, radius *2);
+        }else{
         image(MarioLeft,x,y, radius * 2, radius *2);
+        }
       }
     }
      else{
-            if(ySpeed != 0){
+         if(ySpeed != 0){
+             if(hasHammer){
+          image(MarioRightJumpHammer,x,y, radius * 2, radius *2);
+        }else{
         image(MarioRightJump,x,y, radius * 2.4, radius *2);
+        }
       }else{
+          if(hasHammer){
+          image(MarioRightHammer,x,y, radius * 2, radius *2);
+        }else{
        image(MarioRight,x,y, radius * 2, radius *2);
+        }
     }
      }
     } else {
