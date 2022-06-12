@@ -6,9 +6,11 @@ PImage MarioLeftJump;
 PImage MarioRightJump;
 PImage Hammer;
 PImage MarioLeftHammer;
+PImage DonkeyKong;
 PImage MarioRightHammer;
 PImage MarioLeftJumpHammer;
 PImage MarioRightJumpHammer;
+PImage Barrel;
 public int level=1;
 int t = millis();
 ArrayList<Barrel>barrelList;
@@ -28,6 +30,8 @@ void setup() {
    MarioRightHammer = loadImage("MarioRightHammer.png");
    MarioLeftJumpHammer = loadImage("MarioLeftJumpHammer.png");
    MarioRightJumpHammer = loadImage("MarioRightJumpHammer.png");
+   DonkeyKong = loadImage("DonkeyKong.png");
+   Barrel = loadImage("Barrel.png");
   size(1600, 900);
   input = new Controller();
   barrelList = new ArrayList<Barrel>();
@@ -64,10 +68,14 @@ void draw() {
     background(0);
     textSize(300);
     text("YOU WIN", 100, 300);
+    textSize(100);
+    text("press ' ' to move to the  \n next level", 100, 500);
   } else if (Mario.HP==0) {
     background(0);
     textSize(200);
     text("GAME OVER", 100, 300);
+    textSize(100);
+    text("press 'r' to try again", 100, 500);
   } else {
     background(0);
     String s = " ";

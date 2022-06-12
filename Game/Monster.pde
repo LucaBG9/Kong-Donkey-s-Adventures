@@ -19,7 +19,8 @@ public class Monster{
   void display(){
     if(HP>0){
       fill(0, 255, 0);
-      circle(x, y, radius);
+      imageMode(CENTER);
+       image(DonkeyKong,x,y-10, radius * 2, radius *2);
     } 
   }
 }
