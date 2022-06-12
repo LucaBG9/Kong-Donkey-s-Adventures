@@ -75,9 +75,16 @@ void draw() {
       barrelList.add(kong.throwBarrel());
       time=millis();
     }
-    for(Hammer h : hammerList){
-      h.display();
+    for (int i = 0; i < hammerList.size(); i++){
+      hammerList.get(i).display();
+      if(intersect(Mario, hammerList.get(i))){
+        Mario.hasHammer = true;
+        hammerList.remove(hammerList.get(i));
+        i--;
+      }
     }
+    
+    
     for (Barrel b : barrelList) {
       boolean isOnPlat=false;
       if (abs(b.x - Mario.x) < Mario.radius && abs(b.y - Mario.y) < Mario.radius + b.radius) {
@@ -91,8 +98,8 @@ void draw() {
         } else {
           b.intersect = false;
         }
-      }
-    }
+      }   }
+    
     fill(0);
     for (int i = 0; i < platformList.size(); i ++) {
       platformList.get(i).display();
@@ -107,6 +114,7 @@ void draw() {
     }
   }
 }
+
 void keyPressed() {
   input.press(keyCode);
   if (key == ' ') {
@@ -140,6 +148,18 @@ boolean intersect (Barrel a, Platform b) {
   float distanceX = (a.x + a.radius)- (b.x + b.len/2);
   float distanceY = (a.y + a.radius)- (b.y + 7.5);
   float HalfW = a.radius + b.len/2;
+  float HalfH = a.radius + 7.5;
+  if (abs(distanceX) < HalfW) {
+    if (abs(distanceY) < HalfH) {
+      return true;
+    }
+  }
+  return false;
+}
+boolean intersect (Character a, Hammer b) {
+  float distanceX = (a.x + a.radius)- (b.x + b.radius/2);
+  float distanceY = (a.y + a.radius)- (b.y + 7.5);
+  float HalfW = a.radius +b.radius/2;
   float HalfH = a.radius + 7.5;
   if (abs(distanceX) < HalfW) {
     if (abs(distanceY) < HalfH) {

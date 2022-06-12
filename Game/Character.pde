@@ -9,6 +9,7 @@ public class Character {
 float x, y;
 boolean jump = false;
    float radius;
+   boolean hasHammer = false;
   public Character(float x, float y, float radius) {
     this.x=x;
     this.y=y;
