@@ -1,9 +1,9 @@
-public static final float GRAVITY = 0.5; //<>// //<>//
+public static final float GRAVITY = 0.5; //<>// //<>// //<>//
 PImage MarioLeft;
 PImage MarioRight;
 PImage MarioLeftJump;
 PImage MarioRightJump;
-public int level=1;
+public int level=6;
 int t = millis();
 ArrayList<Barrel>barrelList;
 ArrayList<Platform>platformList;
@@ -13,8 +13,8 @@ float time=millis();
 Controller input;
 ArrayList<Hammer>hammerList;
 void setup() {
-  MarioLeft = loadImage ("MarioLeft.jpg");
-  MarioRight = loadImage ("MarioRight.jpg");
+  MarioLeft = loadImage ("MarioLeft.png");
+  MarioRight = loadImage ("MarioRight.png");
   MarioLeftJump = loadImage ("MarioLeftJump.png");
   MarioRightJump = loadImage ("MarioRightJump.png");
   size(1600, 900);

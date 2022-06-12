@@ -2,7 +2,7 @@ public class Character {
   int k = millis();
   int HP = 1;
   boolean intersect = false;
-  float gravity = 0.75;
+  float gravity = 9.81;
   boolean hasSword=false;
   int xSpeed;
   float ySpeed =0;
