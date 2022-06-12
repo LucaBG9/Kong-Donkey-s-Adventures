@@ -1,4 +1,5 @@
 public static final float GRAVITY = 0.5; //<>// //<>// //<>//
+float hammerTime;
 PImage MarioLeft;
 PImage MarioRight;
 PImage MarioLeftJump;
@@ -59,6 +60,14 @@ void draw() {
     text("GAME OVER", 100, 300);
   } else {
     background(0);
+    String s = " ";
+    if (Mario.hasHammer){
+      s = "Mario has Hammer";
+    }
+    else{
+      s= "Mario does not have Hammer";
+    }
+    text(s, 10, 20);
     kong.display();
     Mario.display();
     if (input.isPressed(Controller.P1_LEFT)) {
@@ -79,11 +88,11 @@ void draw() {
       hammerList.get(i).display();
       if(intersect(Mario, hammerList.get(i))){
         Mario.hasHammer = true;
+        hammerTime = hammerList.get(i).y;
         hammerList.remove(hammerList.get(i));
         i--;
       }
     }
-    
     
     for (Barrel b : barrelList) {
       boolean isOnPlat=false;
@@ -120,6 +129,9 @@ void keyPressed() {
   if (key == ' ') {
     if (Mario.ySpeed==0) {
       Mario.jump();
+     if(Mario.y <  hammerTime - 150){
+      Mario.hasHammer = false;
+    }
       Mario.intersect = false;
     }
   }
