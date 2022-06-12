@@ -143,6 +143,11 @@ void keyReleased() {
   input.release(keyCode);
 }
 void mouseClicked() {
+  for (int k = 0; k < barrelList.size(); k ++) {
+    if (intersect(Mario, barrelList.get(k)) && Mario.hasHammer){
+      barrelList.remove(k);
+    }
+  }
 }
 boolean intersect (Character a, Platform b) {
   float distanceX = (a.x + a.radius)- (b.x + b.len/2);
@@ -174,6 +179,18 @@ boolean intersect (Character a, Hammer b) {
   float HalfW = a.radius +b.radius/2;
   float HalfH = a.radius + 7.5;
   if (abs(distanceX) < HalfW) {
+    if (abs(distanceY) < HalfH) {
+      return true;
+    }
+  }
+  return false;
+}
+boolean intersect (Character a, Barrel b) {
+  float distanceX = (a.x + a.radius)- (b.x + b.radius/2);
+  float distanceY = (a.y + a.radius)- (b.y + 7.5);
+  float HalfW = a.radius +b.radius;
+  float HalfH = a.radius + 7.5;
+  if (abs(distanceX) < HalfW+100) {
     if (abs(distanceY) < HalfH) {
       return true;
     }
