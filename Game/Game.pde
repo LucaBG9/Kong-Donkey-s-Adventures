@@ -11,7 +11,7 @@ PImage MarioRightHammer;
 PImage MarioLeftJumpHammer;
 PImage MarioRightJumpHammer;
 PImage Barrel;
-public int level=1;
+public int level=6;
 int t = millis();
 ArrayList<Barrel>barrelList;
 ArrayList<Platform>platformList;
@@ -85,6 +85,7 @@ void draw() {
     else{
       s= "Mario does not have Hammer";
     }
+    textSize(10);
     text(s, 10, 20);
     kong.display();
     Mario.display();
