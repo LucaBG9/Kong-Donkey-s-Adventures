@@ -24,7 +24,7 @@ public class Barrel {
   }
   void display() {
     imageMode(CENTER);
-    image(Barrel, x, y+1, radius * 2.2, radius *2);
+    image(Barrel, x, y+1, radius * 2, radius *2);
   }
   //void negateY(){ 
   //  ySpeed=0;
