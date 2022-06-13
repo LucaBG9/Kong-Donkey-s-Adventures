@@ -16,7 +16,7 @@ int t = millis();
 ArrayList<Barrel>barrelList;
 ArrayList<Platform>platformList;
 Character Mario;
-Monster kong = new Monster(level, 100, 100, 50);
+Monster kong;
 float time=millis();
 Controller input;
 ArrayList<Hammer>hammerList;
@@ -60,6 +60,7 @@ void setup() {
       min = platformList.get(i).y;
     }
   }
+  kong=new Monster(level, 100, 100, 50);
 }
 void draw() {
   fill(255);
@@ -69,7 +70,7 @@ void draw() {
     textSize(300);
     text("YOU WIN", 100, 300);
     textSize(100);
-    text("press '+' to move to the  \n next level", 100, 500);
+    text("press 'p' to move to the  \n next level", 100, 500);
   } else if (Mario.HP==0) {
     background(0);
     textSize(200);
@@ -87,6 +88,7 @@ void draw() {
     }
     textSize(10);
     text(s, 10, 20);
+    text("Level: "+level, 200, 20);
     kong.display();
     Mario.display();
     if (input.isPressed(Controller.P1_LEFT)) {
@@ -157,7 +159,7 @@ void keyPressed() {
   if(key=='r'){
     setup();
   }
-  if(key=='+'){
+  if(key=='p'){
     if(level<4){
       level++;
       setup();
