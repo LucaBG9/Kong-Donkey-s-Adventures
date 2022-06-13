@@ -37,7 +37,7 @@ void setup() {
   barrelList = new ArrayList<Barrel>();
   platformList=new ArrayList<Platform>();
   hammerList=new ArrayList<Hammer>();
-  if (level==1 || level==2 || level==4) {
+  if (level==1 || level==4 || level==3) {
     Platform one = new Platform(10, height-70, 1000);
     platformList.add(one);
     Platform two = new Platform(width-1020, height-190, 1000);
@@ -87,12 +87,36 @@ void setup() {
       }
     }
     kong=new Monster(level, 400, 100, 50);
+  } else if(level==2){
+    Platform one = new Platform(10, height-70, 1000);
+    platformList.add(one);
+    Platform two = new Platform(width-1020, height-190, 1000);
+    Platform three = new Platform(300, height-310, 200);
+    Platform four = new Platform(10, height-430, 200);
+    platformList.add(two);
+    platformList.add(three);
+    platformList.add(four);
+    Platform five = new Platform(230, height-550, 1000);
+    platformList.add(five);
+    Platform six = new Platform(1000, height-670, 600);
+    platformList.add(six);
+    Platform seven = new Platform(80, 125, 1000);
+    platformList.add(seven);
+    float min = 0;
+    for (int i = 0; i < platformList.size(); i ++) {
+      if (platformList.get(i).y > min) {
+        Mario = new Character(width -1000, platformList.get(i).y -10, 30);
+        min = platformList.get(i).y;
+      }
+    }
+    kong=new Monster(level, 400, 100, 50);
+  } else if(level==3){
   }
 }
 void draw() {
   fill(255);
   text("Level: "+level, 10, 10);
-  if(level==0){
+  if (level==0) {
     background(0);
     textSize(300);
     text("WELCOME ", 90, 300);
@@ -101,17 +125,23 @@ void draw() {
     text("press 'p' to begin \nDifficulty: BEGINNER ", 200, 600);
   } else if (kong.HP==0) {
     background(0);
-    textSize(300);
-    text("YOU WIN", 100, 300);
+    textSize(200);
+    text("YOU WIN", 360, 225);
     textSize(100);
-    if(level==4){
-      text("press 'p' to move to the \nFINAL LEVEL \nDifficulty: EXTREME ", 100, 500);
-    } else if(level==3){ 
-      text("WARNING: \npress 'p' to move to the  \nnext level \nDifficulty: HARD", 100, 500);
-    } else if(level==2){
-      text("press 'p' to move to the  \nnext level \nDifficulty: MEDIUM", 100, 500);
-    } else if(level==1){
-      text("press 'p' to move to the  \nnext level \nDifficulty: EASY", 100, 500);
+    if (level==4) {
+      text("press 'p' to move to the \nFINAL LEVEL \nDifficulty: EXTREME ", 100, 400);
+    } else if (level==3) { 
+      text("WARNING: \npress 'p' to move to the  \nnext level \nDifficulty: HARD", 100, 400);
+    } else if (level==2) {
+      text("press 'p' to move to the  \nnext level \nDifficulty: MEDIUM", 100, 400);
+    } else if (level==1) {
+      text("press 'p' to move to the  \nnext level \nDifficulty: EASY", 100, 400);
+    } else if(level==5){
+      background(212,175,55);
+      textSize(200);
+      text("YOU WIN", 360, 225);
+      textSize(50);
+      text("But did you REALLY WIN? Or did you cheat your way here??", 50, 400);
     }
   } else if (Mario.HP==0) {
     background(0);
@@ -213,21 +243,24 @@ void keyPressed() {
     level=1;
     setup();
   }
-  if(key=='2'){
+  if (key=='2') {
     level=2;
     setup();
   }
-  if(key=='3'){
+  if (key=='3') {
     level=3;
     setup();
   }
-  if(key=='4'){
+  if (key=='4') {
     level=4;
     setup();
   }
-  if(key=='5'){
+  if (key=='5') {
     level=5;
     setup();
+  }
+  if(key=='c'){
+    kong.HP=0;
   }
 }
 void keyReleased() {
