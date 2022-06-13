@@ -45,7 +45,7 @@ void setup() {
   if (level==1 || level==4) {
     Platform one = new Platform(10, height-70, 1000);
     platformList.add(one);
-    Platform two = new Platform(width-920, height-190, 1000);
+    Platform two = new Platform(width-970, height-190, 1000);
     Platform three = new Platform(300, height-290, 200);
     Platform four = new Platform(10, height-390, 200);
     platformList.add(two);
@@ -99,7 +99,7 @@ void setup() {
   } else if(level==2){
     Platform one = new Platform(10, height-70, 1000);
     platformList.add(one);
-    Platform two = new Platform(width-920, height-190, 1000);
+    Platform two = new Platform(width-970, height-190, 1000);
     Platform three = new Platform(300, height-290, 200);
     Platform four = new Platform(10, height-390, 200);
     platformList.add(two);
