@@ -50,7 +50,7 @@ void setup() {
     platformList.add(two);
     platformList.add(three);
     platformList.add(four);
-    Platform five = new Platform(230, height-490, 1000);
+    Platform five = new Platform(230, height-500, 1000);
     platformList.add(five);
     Platform six = new Platform(1000, height-610, 600);
     platformList.add(six);
@@ -183,7 +183,7 @@ void draw() {
     }
 
     if (millis()>time+(8000/kong.getBTPS())) {
-      //barrelList.add(kong.throwBarrel());
+      barrelList.add(kong.throwBarrel());
       time=millis();
     }
     for (int i = 0; i < hammerList.size(); i++) {
