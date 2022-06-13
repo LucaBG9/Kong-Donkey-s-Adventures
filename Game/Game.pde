@@ -12,6 +12,7 @@ PImage MarioLeftJumpHammer;
 PImage MarioRightJumpHammer;
 PImage Barrel;
 PImage Coin;
+int Score = 0;
 public int level=0;
 int t = millis();
 ArrayList<Barrel>barrelList;
@@ -180,6 +181,7 @@ void draw() {
       text("But did you REALLY WIN? Or did you cheat your way here??", 50, 400);
     }
   } else if (Mario.HP==0) {
+    //Score -= 150;
     background(0);
     textSize(200);
     text("GAME OVER", 100, 300);
@@ -196,6 +198,7 @@ void draw() {
     textSize(10);
     text(s, 10, 20);
     text("Level: "+level, 200, 20);
+    text("Score: "+Score, 300, 20);
     kong.display();
     Mario.display();
     if (input.isPressed(Controller.P1_LEFT)) {
@@ -208,9 +211,11 @@ void draw() {
     Mario.move();
     if (Mario.y>height) { 
       Mario.HP=0;
+      Score -= 150;
     }
     if(Mario.x>width+60 || Mario.x<0-60){
       Mario.HP=0;
+      Score -= 150;
     }
 
     if (millis()>time+(8000/kong.getBTPS())) {
@@ -229,13 +234,16 @@ void draw() {
     for(Coin c : coinList){
       c.display();
       if (abs(c.x - Mario.x) < Mario.radius && abs(c.y - Mario.y) < Mario.radius + c.radius) {
+        Score += 250;
         kong.HP=0;
+        //Score += 500;
       }
     }
     for (Barrel b : barrelList) {
       //boolean isOnPlat=false;
       if (abs(b.x - Mario.x) < Mario.radius && abs(b.y - Mario.y) < Mario.radius + b.radius) {
         Mario.HP=0;
+        Score -= 150;
       }
       b.move();
       for (Platform p : platformList) {
@@ -261,11 +269,14 @@ void draw() {
       if(level==5){
         if(Mario.hasHammer){
           kong.HP=0;
+          Score +=500;
         } else{
           Mario.HP=0;
+          Score -= 150;
         }
       } else {
         Mario.HP=0;
+        Score -= 150;
       }
     }
   }
@@ -322,6 +333,7 @@ void mouseClicked() {
   for (int k = 0; k < barrelList.size(); k ++) {
     if (intersect(Mario, barrelList.get(k)) && Mario.hasHammer) {
       barrelList.remove(k);
+      Score += 100;
     }
   }
 }
