@@ -338,7 +338,7 @@ void mouseClicked() {
   }
 }
 boolean intersect (Character a, Platform b) {
-  float distanceX = (a.x + a.radius)- (b.x + b.len/2);
+  float distanceX = (a.x + a.radius)- (b.x+80 + (b.len-80)/2);
   float distanceY = (a.y + a.radius)- (b.y + 7.5);
   float HalfW = a.radius + b.len/2;
   float HalfH = a.radius + 7.5;
