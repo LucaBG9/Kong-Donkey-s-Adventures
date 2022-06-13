@@ -1,4 +1,4 @@
-public static final float GRAVITY = 0.5; //<>// //<>// //<>//
+public static final float GRAVITY = 0.5; //<>// //<>// //<>// //<>//
 float hammerTime;
 PImage MarioLeft;
 PImage MarioRight;
@@ -37,7 +37,7 @@ void setup() {
   barrelList = new ArrayList<Barrel>();
   platformList=new ArrayList<Platform>();
   hammerList=new ArrayList<Hammer>();
-  if (level==1 || level==4 || level==3) {
+  if (level==1 || level==4) {
     Platform one = new Platform(10, height-70, 1000);
     platformList.add(one);
     Platform two = new Platform(width-1020, height-190, 1000);
@@ -79,6 +79,8 @@ void setup() {
     platformList.add(six);
     Platform seven = new Platform(80, 125, 1300);
     platformList.add(seven);
+    Hammer h1 = new Hammer(1450, height-690);
+    hammerList.add(h1);
     float min = 0;
     for (int i = 0; i < platformList.size(); i ++) {
       if (platformList.get(i).y > min) {
@@ -175,7 +177,7 @@ void draw() {
     }
 
     if (millis()>time+(8000/kong.getBTPS())) {
-      barrelList.add(kong.throwBarrel());
+      //barrelList.add(kong.throwBarrel());
       time=millis();
     }
     for (int i = 0; i < hammerList.size(); i++) {
@@ -214,7 +216,13 @@ void draw() {
       }
     } 
     if (abs(kong.x - Mario.x) < Mario.radius && abs(kong.y - Mario.y) < Mario.radius + kong.radius) {
-      kong.HP=0;
+      if(level==5){
+        if(Mario.hasHammer){
+          kong.HP=0;
+        }
+      } else {
+        Mario.HP=0;
+      }
     }
   }
 }
