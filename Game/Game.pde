@@ -135,9 +135,9 @@ void setup() {
     platformList.add(six);
     Coin c1=new Coin(width-100, height-740);
     coinList.add(c1);
-    Hammer h1 = new Hammer(width-870, height-210);
+    Hammer h1 = new Hammer(800, height-220);
     hammerList.add(h1);
-    Hammer h2 = new Hammer(width-540, height-630);
+    Hammer h2 = new Hammer(800, height-610);
     hammerList.add(h2);
     float min = 0;
     for (int i = 0; i < platformList.size(); i ++) {
