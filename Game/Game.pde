@@ -96,7 +96,7 @@ void setup() {
       }
     }
     kong=new Monster(level, 400, 130, 50);
-  } else if(level==2){
+  } else if (level==2) {
     Platform one = new Platform(10, height-70, 1000);
     platformList.add(one);
     Platform two = new Platform(width-970, height-190, 1000);
@@ -121,7 +121,7 @@ void setup() {
       }
     }
     kong=new Monster(level, 220, 160, 50);
-  } else if(level==3){
+  } else if (level==3) {
     Platform one = new Platform(0, height-70, 850);
     platformList.add(one);
     Platform two = new Platform(750, height-200, 850);
@@ -173,12 +173,12 @@ void draw() {
       text("Press 'p' to move to the  \nnext level \nDifficulty: MEDIUM", 100, 400);
     } else if (level==1) {
       text("Press 'p' to move to the  \nnext level \nDifficulty: EASY", 100, 400);
-    } else if(level==5){
-      background(212,175,55);
+    } else if (level==5) {
+      background(212, 175, 55);
       textSize(200);
-      text("YOU WIN", 360, 225);
+      text("KONG DEFEATED!",-20, 225);
       textSize(50);
-      text("But did you REALLY WIN? Or did you cheat your way here??", 50, 400);
+      text("Did you REALLY WIN IT ALL? Or did you cheat your way here?? \nI mean, your score says it all... \nYOUR SCORE: "+Score, 50, 400);
     }
   } else if (Mario.HP==0) {
     //Score -= 150;
@@ -213,7 +213,7 @@ void draw() {
       Mario.HP=0;
       Score -= 150;
     }
-    if(Mario.x>width+60 || Mario.x<0-60){
+    if (Mario.x>width+60 || Mario.x<0-60) {
       Mario.HP=0;
       Score -= 150;
     }
@@ -231,7 +231,7 @@ void draw() {
         i--;
       }
     }
-    for(Coin c : coinList){
+    for (Coin c : coinList) {
       c.display();
       if (abs(c.x - Mario.x) < Mario.radius && abs(c.y - Mario.y) < Mario.radius + c.radius) {
         Score += 250;
@@ -266,11 +266,11 @@ void draw() {
       }
     } 
     if (abs(kong.x - Mario.x) < Mario.radius && abs(kong.y - Mario.y) < Mario.radius + kong.radius) {
-      if(level==5){
-        if(Mario.hasHammer){
+      if (level==5) {
+        if (Mario.hasHammer) {
           kong.HP=0;
           Score +=500;
-        } else{
+        } else {
           Mario.HP=0;
           Score -= 150;
         }
@@ -322,7 +322,7 @@ void keyPressed() {
     level=5;
     setup();
   }
-  if(key=='c'){
+  if (key=='c') {
     kong.HP=0;
   }
 }
