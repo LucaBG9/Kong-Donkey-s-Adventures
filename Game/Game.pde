@@ -209,8 +209,25 @@ void keyPressed() {
       setup();
     }
   }
-  if (key=='c') {
+  if (key=='1') {
+    level=1;
+    setup();
+  }
+  if(key=='2'){
+    level=2;
+    setup();
+  }
+  if(key=='3'){
+    level=3;
+    setup();
+  }
+  if(key=='4'){
     level=4;
+    setup();
+  }
+  if(key=='5'){
+    level=5;
+    setup();
   }
 }
 void keyReleased() {
