@@ -2,13 +2,14 @@ public class Character {
   int k = millis();
   int HP = 1;
   boolean intersect = false;
-  float gravity = 0.75;
+  float gravity = 9.81;
   boolean hasSword=false;
   int xSpeed;
   float ySpeed =0;
 float x, y;
 boolean jump = false;
    float radius;
+   boolean hasHammer = false;
   public Character(float x, float y, float radius) {
     this.x=x;
     this.y=y;
@@ -33,18 +34,35 @@ boolean jump = false;
     color a = color(255, 204, 0);
     fill(a);
     if(xSpeed < 0) {
-      //if(ySpeed != 0){
-      //  image(MarioLeftJump,x,y, radius * 2, radius *2);
-      //}else{
+      if(ySpeed != 0){
+        if(hasHammer){
+          image(MarioLeftJumpHammer,x,y, radius * 2, radius *2);
+        }else{
+        image(MarioLeftJump,x,y, radius * 2.4, radius *2);
+        }
+      }else{
+        if(hasHammer){
+          image(MarioLeftHammer,x,y, radius * 2, radius *2);
+        }else{
         image(MarioLeft,x,y, radius * 2, radius *2);
+        }
       }
-    
-     else{
-            //if(ySpeed != 0){
-      //  image(MarioRightJump,x,y, radius * 2, radius *2);
-      //}else{
-       image(MarioRight,x,y, radius * 2, radius *2);
     }
+     else{
+         if(ySpeed != 0){
+             if(hasHammer){
+          image(MarioRightJumpHammer,x,y, radius * 2, radius *2);
+        }else{
+        image(MarioRightJump,x,y, radius * 2.4, radius *2);
+        }
+      }else{
+          if(hasHammer){
+          image(MarioRightHammer,x,y, radius * 2, radius *2);
+        }else{
+       image(MarioRight,x,y, radius * 2, radius *2);
+        }
+    }
+     }
     } else {
       fill(255,0,0);
       rect(x+radius, y+radius, radius, radius);

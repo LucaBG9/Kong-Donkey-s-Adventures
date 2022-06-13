@@ -18,9 +18,8 @@ public class Barrel {
     y = platY - radius;
   }
   void display() {
-    color c = color(139, 69, 19);
-    fill(c);
-    ellipse(x, y, radius*2, radius*2);
+    imageMode(CENTER);
+    image(Barrel,x,y+1, radius * 2.2, radius *2);
   }
   //void negateY(){ 
   //  ySpeed=0;
