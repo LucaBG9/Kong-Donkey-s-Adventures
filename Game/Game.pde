@@ -53,6 +53,8 @@ void setup() {
   platformList.add(seven);
   Hammer h1 = new Hammer(width-900, height-210);
   hammerList.add(h1);
+  Hammer h2 = new Hammer(width-600, 105);
+  hammerList.add(h2);
   float min = 0;
   for (int i = 0; i < platformList.size(); i ++) {
     if (platformList.get(i).y > min) {
@@ -166,7 +168,7 @@ void keyPressed() {
     }
   }
   if(key=='c'){
-    level=5;
+    level=4;
   }
 }
 void keyReleased() {
