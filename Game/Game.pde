@@ -209,7 +209,7 @@ void draw() {
     if (Mario.y>height) { 
       Mario.HP=0;
     }
-    if(Mario.x>width-35 || Mario.x<0){
+    if(Mario.x>width+60 || Mario.x<0-60){
       Mario.HP=0;
     }
 
