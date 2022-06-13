@@ -11,7 +11,7 @@ PImage MarioRightHammer;
 PImage MarioLeftJumpHammer;
 PImage MarioRightJumpHammer;
 PImage Barrel;
-public int level=6;
+public int level=1;
 int t = millis();
 ArrayList<Barrel>barrelList;
 ArrayList<Platform>platformList;
@@ -69,7 +69,7 @@ void draw() {
     textSize(300);
     text("YOU WIN", 100, 300);
     textSize(100);
-    text("press ' ' to move to the  \n next level", 100, 500);
+    text("press '+' to move to the  \n next level", 100, 500);
   } else if (Mario.HP==0) {
     background(0);
     textSize(200);
@@ -160,6 +160,7 @@ void keyPressed() {
   if(key=='+'){
     if(level<4){
       level++;
+      setup();
     }
   }
   if(key=='c'){
