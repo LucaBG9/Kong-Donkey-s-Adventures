@@ -11,10 +11,10 @@
   
   DEVELOPMENT LOG: 
   5/23: Luca- Today I made the barrel class, modeled off of our orb labs, added its field, constructors, and made the Game class
-Aaron- absent
+\nAaron- absent
 
 5/24: Luca- Today I made the platform class and monster classes, and worked on their display & throw barrel methods
-Aaron- absent
+\nAaron- absent
 
 5/25: Luca- Today I worked on adding some platforms to the Game file, and I started working on branching & merging on github
 Aaron- absent
