@@ -11,7 +11,7 @@ PImage MarioRightHammer;
 PImage MarioLeftJumpHammer;
 PImage MarioRightJumpHammer;
 PImage Barrel;
-public int level=1;
+public int level=0;
 int t = millis();
 ArrayList<Barrel>barrelList;
 ArrayList<Platform>platformList;
@@ -92,15 +92,26 @@ void setup() {
 void draw() {
   fill(255);
   text("Level: "+level, 10, 10);
-  if (kong.HP==0) {
+  if(level==0){
+    background(0);
+    textSize(300);
+    text("WELCOME ", 90, 300);
+    textSize(100);
+    text("TO KONG DONKEY'S ADVENTURE", 3, 400);
+    text("press 'p' to begin \nDifficulty: BEGINNER ", 200, 600);
+  } else if (kong.HP==0) {
     background(0);
     textSize(300);
     text("YOU WIN", 100, 300);
     textSize(100);
     if(level==4){
-      text("press 'p' to move to the \n FINAL LEVEL \n Difficulty: EXTREME ", 100, 500);
+      text("press 'p' to move to the \nFINAL LEVEL \nDifficulty: EXTREME ", 100, 500);
     } else if(level==3){ 
-      text("WARNING: \n press 'p' to move to the  \n next level \n Difficulty: HARD", 100, 500);
+      text("WARNING: \npress 'p' to move to the  \nnext level \nDifficulty: HARD", 100, 500);
+    } else if(level==2){
+      text("press 'p' to move to the  \nnext level \nDifficulty: MEDIUM", 100, 500);
+    } else if(level==1){
+      text("press 'p' to move to the  \nnext level \nDifficulty: EASY", 100, 500);
     }
   } else if (Mario.HP==0) {
     background(0);
