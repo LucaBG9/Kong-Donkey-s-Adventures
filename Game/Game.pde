@@ -27,46 +27,49 @@ void setup() {
   MarioRightJump = loadImage ("MarioRightJump.png");
   Hammer = loadImage("MarioHammer.png");
   MarioLeftHammer = loadImage("MarioLeftHammer.png");
-   MarioRightHammer = loadImage("MarioRightHammer.png");
-   MarioLeftJumpHammer = loadImage("MarioLeftJumpHammer.png");
-   MarioRightJumpHammer = loadImage("MarioRightJumpHammer.png");
-   DonkeyKong = loadImage("DonkeyKong.png");
-   Barrel = loadImage("Barrel.png");
+  MarioRightHammer = loadImage("MarioRightHammer.png");
+  MarioLeftJumpHammer = loadImage("MarioLeftJumpHammer.png");
+  MarioRightJumpHammer = loadImage("MarioRightJumpHammer.png");
+  DonkeyKong = loadImage("DonkeyKong.png");
+  Barrel = loadImage("Barrel.png");
   size(1600, 900);
   input = new Controller();
   barrelList = new ArrayList<Barrel>();
   platformList=new ArrayList<Platform>();
   hammerList=new ArrayList<Hammer>();
-  Platform one = new Platform(10, height-70, 1000);
-  platformList.add(one);
-  Platform two = new Platform(width-1020, height-190, 1000);
-  Platform three = new Platform(300, height-310, 200);
-  Platform four = new Platform(10, height-430, 200);
-  platformList.add(two);
-  platformList.add(three);
-  platformList.add(four);
-  Platform five = new Platform(230, height-550, 1000);
-  platformList.add(five);
-  Platform six = new Platform(1000, height-670, 600);
-  platformList.add(six);
-  Platform seven = new Platform(80, 125, 1000);
-  platformList.add(seven);
-  Hammer h1 = new Hammer(width-900, height-210);
-  hammerList.add(h1);
-  Hammer h2 = new Hammer(width-600, 105);
-  hammerList.add(h2);
-  float min = 0;
-  for (int i = 0; i < platformList.size(); i ++) {
-    if (platformList.get(i).y > min) {
-      Mario = new Character(width / 2, platformList.get(i).y -10, 30);
-      min = platformList.get(i).y;
+  if (level==1) {
+    Platform one = new Platform(10, height-70, 1000);
+    platformList.add(one);
+    Platform two = new Platform(width-1020, height-190, 1000);
+    Platform three = new Platform(300, height-310, 200);
+    Platform four = new Platform(10, height-430, 200);
+    platformList.add(two);
+    platformList.add(three);
+    platformList.add(four);
+    Platform five = new Platform(230, height-550, 1000);
+    platformList.add(five);
+    Platform six = new Platform(1000, height-670, 600);
+    platformList.add(six);
+    Platform seven = new Platform(80, 125, 1000);
+    platformList.add(seven);
+    Hammer h1 = new Hammer(width-900, height-210);
+    hammerList.add(h1);
+    Hammer h2 = new Hammer(width-600, 105);
+    hammerList.add(h2);
+    float min = 0;
+    for (int i = 0; i < platformList.size(); i ++) {
+      if (platformList.get(i).y > min) {
+        Mario = new Character(width / 2, platformList.get(i).y -10, 30);
+        min = platformList.get(i).y;
+      }
     }
+    kong=new Monster(level, 100, 100, 50);
+  } else if (level==2) {
   }
-  kong=new Monster(level, 100, 100, 50);
 }
 void draw() {
   fill(255);
-  text("Level: "+level, 10 ,10);
+  text("Level: "+level, 10, 10);
   if (kong.HP==0) {
     background(0);
     textSize(300);
@@ -82,10 +85,9 @@ void draw() {
   } else {
     background(0);
     String s = " ";
-    if (Mario.hasHammer){
+    if (Mario.hasHammer) {
       s = "Mario has Hammer";
-    }
-    else{
+    } else {
       s= "Mario does not have Hammer";
     }
     textSize(10);
@@ -101,22 +103,24 @@ void draw() {
       Mario.changeSpeed(0);
     }
     Mario.move();
-
+    if(Mario.y>height){ 
+      Mario.HP=0;
+    }
 
     if (millis()>time+(8000/kong.getBTPS())) {
       barrelList.add(kong.throwBarrel());
       time=millis();
     }
-    for (int i = 0; i < hammerList.size(); i++){
+    for (int i = 0; i < hammerList.size(); i++) {
       hammerList.get(i).display();
-      if(intersect(Mario, hammerList.get(i))){
+      if (intersect(Mario, hammerList.get(i))) {
         Mario.hasHammer = true;
         hammerTime = hammerList.get(i).y;
         hammerList.remove(hammerList.get(i));
         i--;
       }
     }
-    
+
     for (Barrel b : barrelList) {
       boolean isOnPlat=false;
       if (abs(b.x - Mario.x) < Mario.radius && abs(b.y - Mario.y) < Mario.radius + b.radius) {
@@ -130,8 +134,9 @@ void draw() {
         } else {
           b.intersect = false;
         }
-      }   }
-    
+      }
+    }
+
     fill(0);
     for (int i = 0; i < platformList.size(); i ++) {
       platformList.get(i).display();
@@ -140,7 +145,7 @@ void draw() {
       } else {
         Mario.intersect = false;
       }
-      } 
+    } 
     if (abs(kong.x - Mario.x) < Mario.radius && abs(kong.y - Mario.y) < Mario.radius + kong.radius) {
       kong.HP=0;
     }
@@ -152,22 +157,22 @@ void keyPressed() {
   if (key == ' ') {
     if (Mario.ySpeed==0) {
       Mario.jump();
-     if(Mario.y <  hammerTime - 150){
-      Mario.hasHammer = false;
-    }
+      if (Mario.y <  hammerTime - 150) {
+        Mario.hasHammer = false;
+      }
       Mario.intersect = false;
     }
   }
-  if(key=='r'){
+  if (key=='r') {
     setup();
   }
-  if(key=='p'){
-    if(level<4){
+  if (key=='p') {
+    if (level<4) {
       level++;
       setup();
     }
   }
-  if(key=='c'){
+  if (key=='c') {
     level=4;
   }
 }
@@ -176,7 +181,7 @@ void keyReleased() {
 }
 void mouseClicked() {
   for (int k = 0; k < barrelList.size(); k ++) {
-    if (intersect(Mario, barrelList.get(k)) && Mario.hasHammer){
+    if (intersect(Mario, barrelList.get(k)) && Mario.hasHammer) {
       barrelList.remove(k);
     }
   }
