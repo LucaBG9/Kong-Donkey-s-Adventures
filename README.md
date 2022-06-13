@@ -53,5 +53,5 @@ Luca- Today I worked on designing various levels, how they would look differentl
 
 6/11: Luca- Today I worked on each of the levels on paper and computed their placements so that the screen would look nicer and playable
 
-6/12: Aaron- I added better images for the each of the different Mario scenarios, like the jumping and hammer mechanics, but I also figured out how to remove the backgrounds from each of the images. I also added Hammer mechanics, and images for Mario holding the hammer, and Donkey Kong. Also added more text to the end screens. 
+6/12: Aaron- I added better images for the each of the different Mario scenarios, like the jumping and hammer mechanics, but I also figured out how to remove the backgrounds from each of the images. I also added Hammer mechanics, and images for Mario holding the hammer, and Donkey Kong. Also added more text to the end screens. Also added Scoring.
 Luca- Today I worked on finishing all levels and I created and completed the very simple Coin class. I also stayed up too late trying to fix all the tiny little things that didn’t affect the project as a whole but were irritating
