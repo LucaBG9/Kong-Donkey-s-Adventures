@@ -37,7 +37,7 @@ void setup() {
   barrelList = new ArrayList<Barrel>();
   platformList=new ArrayList<Platform>();
   hammerList=new ArrayList<Hammer>();
-  if (level==1) {
+  if (level==1 || level==2 || level==4) {
     Platform one = new Platform(10, height-70, 1000);
     platformList.add(one);
     Platform two = new Platform(width-1020, height-190, 1000);
@@ -64,7 +64,29 @@ void setup() {
       }
     }
     kong=new Monster(level, 100, 100, 50);
-  } else if (level==2) {
+  } else if (level==5) {
+    Platform one = new Platform(10, height-70, 800);
+    platformList.add(one);
+    Platform two = new Platform(width-1600, height-190, 200);
+    Platform three = new Platform(width-1250, height-310, 200);
+    Platform four = new Platform(width-900, height-430, 200);
+    platformList.add(two);
+    platformList.add(three);
+    platformList.add(four);
+    Platform five = new Platform(width-550, height-550, 200);
+    platformList.add(five);
+    Platform six = new Platform(width-200, height-670, 200);
+    platformList.add(six);
+    Platform seven = new Platform(80, 125, 1300);
+    platformList.add(seven);
+    float min = 0;
+    for (int i = 0; i < platformList.size(); i ++) {
+      if (platformList.get(i).y > min) {
+        Mario = new Character(width -1000, platformList.get(i).y -10, 30);
+        min = platformList.get(i).y;
+      }
+    }
+    kong=new Monster(level, 400, 100, 50);
   }
 }
 void draw() {
@@ -75,7 +97,11 @@ void draw() {
     textSize(300);
     text("YOU WIN", 100, 300);
     textSize(100);
-    text("press 'p' to move to the  \n next level", 100, 500);
+    if(level==4){
+      text("press 'p' to move to the \n FINAL LEVEL \n Difficulty: EXTREME ", 100, 500);
+    } else if(level==3){ 
+      text("WARNING: \n press 'p' to move to the  \n next level \n Difficulty: HARD", 100, 500);
+    }
   } else if (Mario.HP==0) {
     background(0);
     textSize(200);
@@ -103,7 +129,7 @@ void draw() {
       Mario.changeSpeed(0);
     }
     Mario.move();
-    if(Mario.y>height){ 
+    if (Mario.y>height) { 
       Mario.HP=0;
     }
 
@@ -167,7 +193,7 @@ void keyPressed() {
     setup();
   }
   if (key=='p') {
-    if (level<4) {
+    if (level<5) {
       level++;
       setup();
     }
