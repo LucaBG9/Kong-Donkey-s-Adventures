@@ -12,7 +12,7 @@ PImage MarioLeftJumpHammer;
 PImage MarioRightJumpHammer;
 PImage Barrel;
 PImage Coin;
-public int level=1;
+public int level=3;
 int t = millis();
 ArrayList<Barrel>barrelList;
 ArrayList<Platform>platformList;
@@ -71,21 +71,21 @@ void setup() {
     }
     kong=new Monster(level, 220, 160, 50);
   } else if (level==5) {
-    Platform one = new Platform(10, height-70, 800);
+    Platform one = new Platform(250, height-70, 800);
     platformList.add(one);
-    Platform two = new Platform(width-1600, height-190, 200);
-    Platform three = new Platform(width-1250, height-310, 200);
-    Platform four = new Platform(width-900, height-430, 200);
+    Platform two = new Platform(width-1600, height-185, 200);
+    Platform three = new Platform(width-1250, height-300, 200);
+    Platform four = new Platform(width-900, height-415, 200);
     platformList.add(two);
     platformList.add(three);
     platformList.add(four);
-    Platform five = new Platform(width-550, height-550, 200);
+    Platform five = new Platform(width-550, height-530, 200);
     platformList.add(five);
-    Platform six = new Platform(width-200, height-670, 200);
+    Platform six = new Platform(width-200, height-645, 200);
     platformList.add(six);
-    Platform seven = new Platform(80, 125, 1300);
+    Platform seven = new Platform(80, 155, 1300);
     platformList.add(seven);
-    Hammer h1 = new Hammer(1450, height-690);
+    Hammer h1 = new Hammer(1450, height-665);
     hammerList.add(h1);
     float min = 0;
     for (int i = 0; i < platformList.size(); i ++) {
@@ -94,22 +94,24 @@ void setup() {
         min = platformList.get(i).y;
       }
     }
-    kong=new Monster(level, 400, 100, 50);
+    kong=new Monster(level, 400, 130, 50);
   } else if(level==2){
     Platform one = new Platform(10, height-70, 1000);
     platformList.add(one);
-    Platform two = new Platform(width-1020, height-190, 1000);
-    Platform three = new Platform(300, height-310, 200);
-    Platform four = new Platform(10, height-430, 200);
+    Platform two = new Platform(width-920, height-190, 1000);
+    Platform three = new Platform(300, height-290, 200);
+    Platform four = new Platform(10, height-390, 200);
     platformList.add(two);
     platformList.add(three);
     platformList.add(four);
-    Platform five = new Platform(230, height-550, 1000);
+    Platform five = new Platform(230, height-500, 1000);
     platformList.add(five);
-    Platform six = new Platform(1000, height-670, 600);
+    Platform six = new Platform(1000, height-610, 600);
     platformList.add(six);
-    Platform seven = new Platform(80, 125, 1000);
+    Platform seven = new Platform(20, 185, 1060);
     platformList.add(seven);
+    Coin c1=new Coin(50, 160);
+    coinList.add(c1);
     float min = 0;
     for (int i = 0; i < platformList.size(); i ++) {
       if (platformList.get(i).y > min) {
@@ -119,6 +121,32 @@ void setup() {
     }
     kong=new Monster(level, 400, 100, 50);
   } else if(level==3){
+    Platform one = new Platform(0, height-70, 850);
+    platformList.add(one);
+    Platform two = new Platform(750, height-200, 850);
+    Platform three = new Platform(0, height-330, 850);
+    Platform four = new Platform(750, height-460, 850);
+    platformList.add(two);
+    platformList.add(three);
+    platformList.add(four);
+    Platform five = new Platform(0, height-590, 850);
+    platformList.add(five);
+    Platform six = new Platform(750, height-720, 850);
+    platformList.add(six);
+    Coin c1=new Coin(width-100, height-740);
+    coinList.add(c1);
+    Hammer h1 = new Hammer(width-870, height-210);
+    hammerList.add(h1);
+    Hammer h2 = new Hammer(width-540, height-630);
+    hammerList.add(h2);
+    float min = 0;
+    for (int i = 0; i < platformList.size(); i ++) {
+      if (platformList.get(i).y > min) {
+        Mario = new Character(width -1400, platformList.get(i).y -10, 30);
+        min = platformList.get(i).y;
+      }
+    }
+    kong=new Monster(level, width-300, height-745, 50);
   }
 }
 void draw() {
@@ -202,7 +230,7 @@ void draw() {
       }
     }
     for (Barrel b : barrelList) {
-      boolean isOnPlat=false;
+      //boolean isOnPlat=false;
       if (abs(b.x - Mario.x) < Mario.radius && abs(b.y - Mario.y) < Mario.radius + b.radius) {
         Mario.HP=0;
       }
