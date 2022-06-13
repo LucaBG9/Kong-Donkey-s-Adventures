@@ -11,7 +11,8 @@ PImage MarioRightHammer;
 PImage MarioLeftJumpHammer;
 PImage MarioRightJumpHammer;
 PImage Barrel;
-public int level=0;
+PImage Coin;
+public int level=1;
 int t = millis();
 ArrayList<Barrel>barrelList;
 ArrayList<Platform>platformList;
@@ -20,7 +21,9 @@ Monster kong;
 float time=millis();
 Controller input;
 ArrayList<Hammer>hammerList;
+ArrayList<Coin>coinList;
 void setup() {
+  Coin=loadImage("Coin.png");
   MarioLeft = loadImage ("MarioLeft.png");
   MarioRight = loadImage ("MarioRight.png");
   MarioLeftJump = loadImage ("MarioLeftJump.png");
@@ -37,24 +40,27 @@ void setup() {
   barrelList = new ArrayList<Barrel>();
   platformList=new ArrayList<Platform>();
   hammerList=new ArrayList<Hammer>();
+  coinList=new ArrayList<Coin>();
   if (level==1 || level==4) {
     Platform one = new Platform(10, height-70, 1000);
     platformList.add(one);
-    Platform two = new Platform(width-1020, height-190, 1000);
-    Platform three = new Platform(300, height-310, 200);
-    Platform four = new Platform(10, height-430, 200);
+    Platform two = new Platform(width-920, height-190, 1000);
+    Platform three = new Platform(300, height-290, 200);
+    Platform four = new Platform(10, height-390, 200);
     platformList.add(two);
     platformList.add(three);
     platformList.add(four);
-    Platform five = new Platform(230, height-550, 1000);
+    Platform five = new Platform(230, height-490, 1000);
     platformList.add(five);
-    Platform six = new Platform(1000, height-670, 600);
+    Platform six = new Platform(1000, height-610, 600);
     platformList.add(six);
-    Platform seven = new Platform(80, 125, 1000);
+    Platform seven = new Platform(20, 185, 1060);
     platformList.add(seven);
-    Hammer h1 = new Hammer(width-900, height-210);
+    Coin c1=new Coin(50, 160);
+    coinList.add(c1);
+    Hammer h1 = new Hammer(width-870, height-210);
     hammerList.add(h1);
-    Hammer h2 = new Hammer(width-600, 105);
+    Hammer h2 = new Hammer(width-540, height-630);
     hammerList.add(h2);
     float min = 0;
     for (int i = 0; i < platformList.size(); i ++) {
@@ -63,7 +69,7 @@ void setup() {
         min = platformList.get(i).y;
       }
     }
-    kong=new Monster(level, 100, 100, 50);
+    kong=new Monster(level, 220, 160, 50);
   } else if (level==5) {
     Platform one = new Platform(10, height-70, 800);
     platformList.add(one);
@@ -189,7 +195,12 @@ void draw() {
         i--;
       }
     }
-
+    for(Coin c : coinList){
+      c.display();
+      if (abs(c.x - Mario.x) < Mario.radius && abs(c.y - Mario.y) < Mario.radius + c.radius) {
+        kong.HP=0;
+      }
+    }
     for (Barrel b : barrelList) {
       boolean isOnPlat=false;
       if (abs(b.x - Mario.x) < Mario.radius && abs(b.y - Mario.y) < Mario.radius + b.radius) {
@@ -219,6 +230,8 @@ void draw() {
       if(level==5){
         if(Mario.hasHammer){
           kong.HP=0;
+        } else{
+          Mario.HP=0;
         }
       } else {
         Mario.HP=0;
