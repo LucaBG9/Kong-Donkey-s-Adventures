@@ -7,7 +7,13 @@ public class Monster{
     this.y=y;
     this.radius = radius;
     HP=1;
-    barrelsThrownPerSec=level*2.5;
+    if(level==5){
+      barrelsThrownPerSec=level*2;
+    } else if(level==4){
+      barrelsThrownPerSec=3*2.5;
+    } else {
+      barrelsThrownPerSec=level*2.5;
+    }
   }
   float getBTPS(){
     return barrelsThrownPerSec;
