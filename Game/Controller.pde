@@ -26,7 +26,7 @@ class Controller {
       inputs[P1_LEFT] = false;
     if (code == 'D')
       inputs[P1_RIGHT] = false;
-     if (code == ' ')
+    if (code == ' ')
       inputs[P1_SPACE] = false;
   }
 }

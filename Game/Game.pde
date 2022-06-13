@@ -12,7 +12,7 @@ PImage MarioLeftJumpHammer;
 PImage MarioRightJumpHammer;
 PImage Barrel;
 PImage Coin;
-public int level=3;
+public int level=0;
 int t = millis();
 ArrayList<Barrel>barrelList;
 ArrayList<Platform>platformList;
@@ -119,7 +119,7 @@ void setup() {
         min = platformList.get(i).y;
       }
     }
-    kong=new Monster(level, 400, 100, 50);
+    kong=new Monster(level, 220, 160, 50);
   } else if(level==3){
     Platform one = new Platform(0, height-70, 850);
     platformList.add(one);
@@ -158,20 +158,20 @@ void draw() {
     text("WELCOME ", 90, 300);
     textSize(100);
     text("TO KONG DONKEY'S ADVENTURE", 3, 400);
-    text("press 'p' to begin \nDifficulty: BEGINNER ", 200, 600);
+    text("Press 'p' to begin \nDifficulty: BEGINNER ", 200, 600);
   } else if (kong.HP==0) {
     background(0);
     textSize(200);
     text("YOU WIN", 360, 225);
     textSize(100);
     if (level==4) {
-      text("press 'p' to move to the \nFINAL LEVEL \nDifficulty: EXTREME ", 100, 400);
+      text("Press 'p' to move to the \nFINAL LEVEL \nDifficulty: EXTREME ", 100, 400);
     } else if (level==3) { 
-      text("WARNING: \npress 'p' to move to the  \nnext level \nDifficulty: HARD", 100, 400);
+      text("WARNING: \nPress 'p' to move to the  \nnext level \nDifficulty: HARD", 100, 400);
     } else if (level==2) {
-      text("press 'p' to move to the  \nnext level \nDifficulty: MEDIUM", 100, 400);
+      text("Press 'p' to move to the  \nnext level \nDifficulty: MEDIUM", 100, 400);
     } else if (level==1) {
-      text("press 'p' to move to the  \nnext level \nDifficulty: EASY", 100, 400);
+      text("Press 'p' to move to the  \nnext level \nDifficulty: EASY", 100, 400);
     } else if(level==5){
       background(212,175,55);
       textSize(200);
@@ -207,6 +207,9 @@ void draw() {
     }
     Mario.move();
     if (Mario.y>height) { 
+      Mario.HP=0;
+    }
+    if(Mario.x>width-35 || Mario.x<0){
       Mario.HP=0;
     }
 
