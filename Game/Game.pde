@@ -118,6 +118,14 @@ void keyPressed() {
   if(key=='r'){
     setup();
   }
+  if(key=='+'){
+    if(level<4){
+      level++;
+    }
+  }
+  if(key=='c'){
+    level=5;
+  }
 }
 void keyReleased() {
   input.release(keyCode);
